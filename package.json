@@ -8,7 +8,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js -- --username=Vasya"
+    "start": "node src/index.js -- --username=Vasya",
+    "start:debug": "node --inspect-brk src/index.js -- --username=Vasya"
   },
   "repository": {
     "type": "git",

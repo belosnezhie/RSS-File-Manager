@@ -1,3 +1,6 @@
+import { commandsMap } from './model/index.js';
+import { printDirectory } from './utils/printDirectory.js';
+
 const main = async () => {
 
   const args = process.argv;
@@ -8,16 +11,18 @@ const main = async () => {
   const name =  args[index].split('=')[1];
 
   console.log(`Welcome to the File Manager, ${name}!`);
-
+  printDirectory();
 
   process.stdin.on('data', (inputStdin) => {
-    console.log('Process has deen started');
-    console.log(inputStdin.toString());
+    const input = inputStdin.toString().trim().split(' ');
+    const controller = commandsMap.get(input[0]);
+    const args = input[1];
+
+    controller(args);
   });
 
   process.on('SIGINT', () => {
-    console.log('\n');
-    console.log(`Thank you for using File Manager, ${name}, goodbye!`);
+    console.log(`\nThank you for using File Manager, ${name}, goodbye!`);
 
     process.exit(0);
   });
