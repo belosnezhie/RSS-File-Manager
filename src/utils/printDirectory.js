@@ -8,5 +8,6 @@ export const printDirectory = () => {
   const dir = currentDir.includes(homeDir) ? currentDir : join(homeDir, currentDir);
 
   console.log(`You are currently in ${dir}\n `);
+
   return dir;
 }

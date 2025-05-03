@@ -1,3 +1,3 @@
-export const handleOperationError = () => {
-  throw new Error('Operation failed');
+export const handleOperationError = (message) => {
+  console.error(`Operation failed: ${message}`);
 }

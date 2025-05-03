@@ -1,3 +1,3 @@
-export const handleInputError = () => {
-  throw new Error('Invalid input');
+export const handleInputError = (message) => {
+  console.error(`Invalid input: ${message}`);
 }
