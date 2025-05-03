@@ -1,3 +1,3 @@
 export const handleInputError = (message) => {
-  console.error(`Invalid input: ${message}`);
+  console.error(`\nInvalid input: ${message}\n`);
 }

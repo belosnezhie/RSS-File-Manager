@@ -7,6 +7,19 @@ import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
 
 export const handleCP = async (args) => {
+  try {
+    await handleCPInner(args);
+  }
+  catch (err) {
+    if (err.cause.code === 'input') {
+      handleInputError(err.message);
+    } else {
+      handleOperationError(err.message);
+    }
+  }
+};
+
+export const handleCPInner = async (args) => {
   const [pathToFile, pathToNewDir] = args;
 
   const from = resolve(pathToFile);
@@ -18,29 +31,32 @@ export const handleCP = async (args) => {
     await access(from);
   } catch (err) {
     if (err.code === 'ENOENT') {
-      handleInputError(`\n${fileName} does not exist\n`);
-      return;
+      throw new Error(`${fileName} does not exist`, { cause: { code: 'input'}});
     }
   }
 
   try {
     await access(join(to, fileName));
-    handleInputError(`\n${fileName} file already exists in ${pathToNewDir}\n`);
-    return;
+    throw new Error(
+      `${fileName} file already exists in ${pathToNewDir}`,
+      { cause: { code: 'input' } }
+    );
   } catch (err) {
-    if (err.code !== 'ENOENT') {
-      handleOperationError(err.message)
-    }
+    // do nothing;
   }
 
   try {
     const readStream = createReadStream(from, { encoding: 'utf-8' });
-    const writeStream = createWriteStream(join(to, fileName), { encoding: 'utf-8' });
+    const writeStream = createWriteStream(to, { encoding: 'utf-8' });
 
     await pipeline(readStream, writeStream);
     console.log(`\n${fileName} successfully copied\n`)
     printDirectory();
+    return true;
   } catch (err) {
-    handleOperationError(err.message);
+      throw new Error(
+        err.message,
+        { cause: { code: 'operation' } }
+      );
   }
-};
+}
