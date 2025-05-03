@@ -13,12 +13,12 @@ const main = async () => {
   console.log(`Welcome to the File Manager, ${name}!`);
   printDirectory();
 
-  process.stdin.on('data', (inputStdin) => {
+  process.stdin.on('data', async (inputStdin) => {
     const input = inputStdin.toString().trim().split(' ');
     const controller = commandsMap.get(input[0]);
     const args = input[1];
 
-    controller(args);
+    await controller(args);
   });
 
   process.on('SIGINT', () => {
