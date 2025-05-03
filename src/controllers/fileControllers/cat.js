@@ -4,7 +4,8 @@ import { pipeline } from 'stream/promises';
 import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 
-export const handleCat = async (pathToFile) => {
+export const handleCat = async (args) => {
+  const [pathToFile] = args;
 
   const path = resolve(pathToFile);
 

@@ -16,7 +16,7 @@ const main = async () => {
   process.stdin.on('data', async (inputStdin) => {
     const input = inputStdin.toString().trim().split(' ');
     const controller = commandsMap.get(input[0]);
-    const args = input[1];
+    const args = input.splice(1, input.length);
 
     await controller(args);
   });

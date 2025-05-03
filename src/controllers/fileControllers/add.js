@@ -4,7 +4,8 @@ import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
 
-export const handleAdd = async (fileName) => {
+export const handleAdd = async (args) => {
+  const [fileName] = args;
 
   const path = process.cwd();
 
