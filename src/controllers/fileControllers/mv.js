@@ -1,7 +1,5 @@
-import { access, unlink } from 'fs/promises';
-import { createReadStream, createWriteStream } from 'fs';
-import { resolve, basename, join } from 'path';
-import { pipeline } from 'stream/promises';
+import { unlink } from 'fs/promises';
+import { resolve, basename } from 'path';
 import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';

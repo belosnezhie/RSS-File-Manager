@@ -7,6 +7,7 @@ import { handleMkdir } from '../controllers/fileControllers/mkdir.js';
 import { handleRn } from '../controllers/fileControllers/rn.js';
 import { handleCP } from '../controllers/fileControllers/cp.js';
 import { handleMV } from '../controllers/fileControllers/mv.js';
+import { handleRM } from '../controllers/fileControllers/rm.js';
 
 export const commandsMap = new Map();
 // Path controllers
@@ -20,3 +21,4 @@ commandsMap.set('mkdir', handleMkdir);
 commandsMap.set('rn', handleRn);
 commandsMap.set('cp', handleCP);
 commandsMap.set('mv', handleMV);
+commandsMap.set('rm', handleRM);
