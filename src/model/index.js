@@ -10,6 +10,8 @@ import { handleMV } from '../controllers/fileControllers/mv.js';
 import { handleRM } from '../controllers/fileControllers/rm.js';
 import { handleSystem } from '../controllers/systemControllers/system.js';
 import { handleHash } from '../controllers/hashControllers/hash.js';
+import { handleCompress } from '../controllers/compressionControllers/compress.js';
+import { handleDecompress } from '../controllers/compressionControllers/decompress.js';
 
 export const commandsMap = new Map();
 // Path controllers
@@ -28,3 +30,6 @@ commandsMap.set('rm', handleRM);
 commandsMap.set('os', handleSystem);
 // Hash controllers
 commandsMap.set('hash', handleHash);
+// Compression controllers
+commandsMap.set('compress', handleCompress);
+commandsMap.set('decompress', handleDecompress);
