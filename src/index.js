@@ -1,4 +1,5 @@
 import { commandsMap } from './model/index.js';
+import { handleInputError } from './utils/handleInputError.js';
 import { printDirectory } from './utils/printDirectory.js';
 
 const main = async () => {
@@ -17,6 +18,11 @@ const main = async () => {
     const input = inputStdin.toString().trim().split(' ');
     const controller = commandsMap.get(input[0]);
     const args = input.splice(1, input.length);
+
+    if (controller === undefined) {
+      handleInputError('command does not exist');
+      return;
+    }
 
     await controller(args);
   });
