@@ -9,6 +9,7 @@ import { handleCP } from '../controllers/fileControllers/cp.js';
 import { handleMV } from '../controllers/fileControllers/mv.js';
 import { handleRM } from '../controllers/fileControllers/rm.js';
 import { handleSystem } from '../controllers/systemControllers/system.js';
+import { handleHash } from '../controllers/hashControllers/hash.js';
 
 export const commandsMap = new Map();
 // Path controllers
@@ -25,3 +26,5 @@ commandsMap.set('mv', handleMV);
 commandsMap.set('rm', handleRM);
 // Operating system controllers
 commandsMap.set('os', handleSystem);
+// Hash controllers
+commandsMap.set('hash', handleHash);
