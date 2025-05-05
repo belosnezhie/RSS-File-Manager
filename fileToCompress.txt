@@ -1,4 +1,0 @@
-fileToCompress.txt
-decompress /src/controllers/compressionControllers/fileToCompress.txt.br src - не сработало
-decompress src/controllers/compressionControllers/fileToCompress.txt.br src - сработало
-decompress ../src/controllers/compressionControllers/fileToCompress.txt.br src - не сработало

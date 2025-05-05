@@ -5,6 +5,7 @@ import os from 'os';
 import { handleCD } from './controllers/pathControllers/cd.js';
 import { handleInputError } from './utils/handleInputError.js';
 import { printDirectory } from './utils/printDirectory.js';
+import { handleOperationError } from './utils/handleOperationError.js';
 
 const main = async () => {
   const args = process.argv;
@@ -39,8 +40,10 @@ const main = async () => {
     } catch (err) {
       if (err.name === 'AbortError') {
         handleExit(name, rl);
+      } else if (err.code === "ERR_INVALID_ARG_TYPE") {
+        handleInputError('command expects two arguments');
       } else {
-        handleInputError(err.message);
+        handleOperationError(err.message);
       }
     }
   }

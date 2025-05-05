@@ -19,12 +19,14 @@ export const handleRn = async (args) => {
     }
   }
 
-  rename(path, pathToNewFile)
-  .catch((err) => {
-      if (err.code === 'ENOENT') {
-        handleInputError(`${pathToFile} does not exist`);
-      } else {
-        handleOperationError(err.message);
-      }
-  });
+  try {
+    rename(path, pathToNewFile)
+    console.log(`File succsesfully renamed.`)
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      handleInputError(`${pathToFile} does not exist`);
+    } else {
+      handleOperationError(err.message);
+    }
+  }
 };

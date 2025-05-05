@@ -20,6 +20,7 @@ export const handleAdd = async (args) => {
 
   try {
     open(join(path, fileName), 'w');
+    console.log('File successfully created')
   } catch (error) {
     handleOperationError(error.message);
   }
