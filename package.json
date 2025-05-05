@@ -1,0 +1,24 @@
+{
+  "name": "rss-file-manager",
+  "version": "1.0.0",
+  "description": "File Manager",
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "start:debug": "node --inspect-brk src/index.js -- --username=Vasya"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/belosnezhie/RSS-File-Manager.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/belosnezhie/RSS-File-Manager/issues"
+  },
+  "homepage": "https://github.com/belosnezhie/RSS-File-Manager#readme"
+}
