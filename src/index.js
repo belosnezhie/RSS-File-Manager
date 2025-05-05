@@ -1,11 +1,10 @@
 import { commandsMap } from './model/index.js';
-import { handleInputError } from './utils/handleInputError.js';
-import { printDirectory } from './utils/printDirectory.js';
 import { createInterface } from 'readline/promises';
 import { stdin as input, stdout as output } from 'process';
 import os from 'os';
 import { handleCD } from './controllers/pathControllers/cd.js';
-
+import { handleInputError } from './utils/handleInputError.js';
+import { printDirectory } from './utils/printDirectory.js';
 
 const main = async () => {
   const args = process.argv;
@@ -19,26 +18,30 @@ const main = async () => {
 
   const rl = createInterface({ input, output });
 
-  process.on('SIGINT', () => {
-    handleExit(name, rl);
-  });
+  try {
+    while (true) {
+      const line = await rl.question('> ');
+      const [command, ...commandArgs] = line.trim().split(' ');
 
-  while (true) {
-    const line = await rl.question('> ');
-    const [command, ...commandArgs] = line.trim().split(' ');
+      if (command === '.exit') {
+        handleExit(name, rl);
+      }
+      const controller = commandsMap.get(command);
 
-    if (command === '.exit') {
+      if (controller === undefined) {
+        handleInputError('command does not exist');
+        return;
+      }
+
+      await controller(commandArgs);
+      printDirectory();
+    }
+  } catch (err) {
+    if (err.name === 'AbortError') {
       handleExit(name, rl);
+    } else {
+      handleInputError(err.message);
     }
-    const controller = commandsMap.get(command);
-
-    if (controller === undefined) {
-      handleInputError('command does not exist');
-      return;
-    }
-
-    await controller(commandArgs);
-    printDirectory();
   }
 }
 
