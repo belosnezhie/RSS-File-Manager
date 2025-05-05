@@ -18,8 +18,8 @@ const main = async () => {
 
   const rl = createInterface({ input, output });
 
-  try {
-    while (true) {
+  while (true) {
+    try {
       const line = await rl.question('> ');
       const [command, ...commandArgs] = line.trim().split(' ');
 
@@ -35,12 +35,12 @@ const main = async () => {
 
       await controller(commandArgs);
       printDirectory();
-    }
-  } catch (err) {
-    if (err.name === 'AbortError') {
-      handleExit(name, rl);
-    } else {
-      handleInputError(err.message);
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        handleExit(name, rl);
+      } else {
+        handleInputError(err.message);
+      }
     }
   }
 }
