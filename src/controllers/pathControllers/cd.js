@@ -1,5 +1,4 @@
 import { handleInputError } from "../../utils/handleInputError.js";
-import { printDirectory } from "../../utils/printDirectory.js";
 
 export const handleCD = (args) => {
   const [pathToDir] = args;
@@ -9,6 +8,4 @@ export const handleCD = (args) => {
   } catch (err) {
     handleInputError();
   }
-
-  printDirectory();
 }

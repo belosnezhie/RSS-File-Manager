@@ -39,7 +39,6 @@ export const handleCompress = async (agrs) => {
     await pipeline(readStream, brotliStream, writeStream);
 
     console.log('File successfully compressed.\n');
-    printDirectory();
   } catch (err) {
     if (err.code === 'ENOENT') {
       handleInputError(`${to} directory does not exist`);

@@ -2,7 +2,6 @@ import { access } from 'fs/promises';
 import { createReadStream, createWriteStream } from 'fs';
 import { resolve, basename, join } from 'path';
 import { pipeline } from 'stream/promises';
-import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
 
@@ -51,7 +50,6 @@ export const handleCPInner = async (args) => {
 
     await pipeline(readStream, writeStream);
     console.log(`\n${fileName} successfully copied\n`)
-    printDirectory();
     return true;
   } catch (err) {
       throw new Error(

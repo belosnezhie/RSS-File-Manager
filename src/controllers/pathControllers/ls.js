@@ -1,9 +1,8 @@
 import { readdir } from 'fs/promises';
-import { printDirectory } from "../../utils/printDirectory.js";
 import { handleOperationError } from '../../utils/handleOperationError.js';
 
 export const handleList = async () => {
-  const dir = printDirectory();
+  const dir = process.cwd();
 
   try {
     const res = await readdir(dir, {

@@ -1,6 +1,5 @@
 import { rename, access } from 'fs/promises';
 import { resolve } from 'path';
-import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
 
@@ -28,6 +27,4 @@ export const handleRn = async (args) => {
         handleOperationError(err.message);
       }
   });
-
-  printDirectory();
 };

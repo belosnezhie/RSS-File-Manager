@@ -5,7 +5,6 @@ import { createBrotliDecompress } from 'zlib';
 import { pipeline } from 'stream/promises';
 import { handleInputError } from "../../utils/handleInputError.js";
 import { handleOperationError } from "../../utils/handleOperationError.js";
-import { printDirectory } from "../../utils/printDirectory.js";
 
 export const handleDecompress = async (agrs) => {
   const [pathToFile, pathToDestination] = agrs;
@@ -42,7 +41,6 @@ export const handleDecompress = async (agrs) => {
     await pipeline(readStream, brotliDecompress, writeStream);
 
     console.log('File successfully decompressed.\n');
-    printDirectory();
   } catch (err) {
     if (err.code === 'ENOENT') {
       handleInputError(`${to} directory does not exist`);

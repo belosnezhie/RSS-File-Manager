@@ -1,6 +1,5 @@
 import { unlink } from 'fs/promises';
 import { resolve, basename } from 'path';
-import { printDirectory } from '../../utils/printDirectory.js';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
 import { handleCPInner } from './cp.js';
@@ -30,5 +29,4 @@ const handleMVInner = async (args) => {
   await unlink(from);
 
   console.log(`\n${fileName} successfully deleted\n`);
-  printDirectory();
 };

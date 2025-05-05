@@ -4,7 +4,6 @@ import { resolve, basename } from 'path';
 import { pipeline } from 'stream/promises';
 import { handleOperationError } from '../../utils/handleOperationError.js';
 import { handleInputError } from '../../utils/handleInputError.js';
-import { printDirectory } from '../../utils/printDirectory.js';
 
 export const handleHash = async (args) => {
   const [pathToFile] = args;
@@ -21,7 +20,6 @@ export const handleHash = async (args) => {
 
     const digest = hash.digest('hex');
     console.log(`Hash: ${digest}\n`);
-    printDirectory();
   } catch (err) {
     if (err.code === 'ENOENT') {
       handleInputError(`${fileName} does not exist`);
