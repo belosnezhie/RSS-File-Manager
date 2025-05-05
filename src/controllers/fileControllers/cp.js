@@ -46,7 +46,7 @@ export const handleCPInner = async (args) => {
 
   try {
     const readStream = createReadStream(from, { encoding: 'utf-8' });
-    const writeStream = createWriteStream(to, { encoding: 'utf-8' });
+    const writeStream = createWriteStream(join(to, fileName), { encoding: 'utf-8' });
 
     await pipeline(readStream, writeStream);
     console.log(`\n${fileName} successfully copied\n`)
