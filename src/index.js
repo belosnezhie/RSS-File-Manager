@@ -15,6 +15,7 @@ const main = async () => {
   console.log(`Welcome to the File Manager, ${name}!`);
 
   await handleCD([os.homedir()]);
+  printDirectory();
 
   const rl = createInterface({ input, output });
 
@@ -28,12 +29,12 @@ const main = async () => {
       }
       const controller = commandsMap.get(command);
 
-      if (controller === undefined) {
-        handleInputError('command does not exist');
-        return;
+      if (!controller) {
+        handleInputError('Invalid command');
+      } else {
+        await controller(commandArgs);
       }
 
-      await controller(commandArgs);
       printDirectory();
     } catch (err) {
       if (err.name === 'AbortError') {
@@ -44,7 +45,6 @@ const main = async () => {
     }
   }
 }
-
 
 const handleExit = (username, readline) => {
   console.log(`\nThank you for using File Manager, ${username}, goodbye!`);
